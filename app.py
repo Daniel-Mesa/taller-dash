@@ -21,7 +21,12 @@ app.config.suppress_callback_exceptions = True
 
 # Load data from csv
 def load_data():
-    # To do: Completar la función 
+    # To do: Completar la función
+    data = pd.read_csv(r"C:\Users\dcmes\OneDrive - Universidad de los andes\Semestre 4\2. Desarrollo de Soluciones\Taller1\datos_energia.csv")
+    data.iloc[:, 0] = pd.to_datetime(data.iloc[:, 0], format='%Y-%m-%d %H:%M:%S')
+    data.set_index(data.columns[0], inplace=True)
+
+    return data
     
 
 # Cargar datos
@@ -240,4 +245,4 @@ def update_output_div(date, hour, proy):
 
 # Run the server
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)
